@@ -1,0 +1,22 @@
+# Build artifacts
+build/
+/build/
+CMakeLists.txt.user
+*.cmake.in
+
+# Compiled files
+*.o
+*.obj
+*.so
+*.a
+*.dll
+*.lib
+*.exe
+*.out
+*.app
+
+# IDE-specific files
+.vscode/
+.idea/
+*.suo
+*.user
