@@ -34,7 +34,7 @@ impl CPU {
     // Add all methods here
 
     pub fn get_bc(&self) -> u16 {
-        self.b as u16 << 8 | self.c as u16
+        ((self.b as u16) << 8) | (self.c as u16)
     }
 
     pub fn set_bc(&mut self, value: u16) {
@@ -43,7 +43,7 @@ impl CPU {
     }
 
     pub fn get_de(&self) -> u16 {
-        (self.d as u16 << 8) | (self.e as u16)
+        ((self.d as u16) << 8) | (self.e as u16)
     }
 
     pub fn set_de(&mut self, value: u16) {
@@ -52,7 +52,7 @@ impl CPU {
     }
 
     pub fn get_hl(&self) -> u16 {
-        (self.h as u16 << 8) | (self.l as u16)
+        ((self.h as u16) << 8) | (self.l as u16)
     }
 
     pub fn set_hl(&mut self, value: u16) {
@@ -66,52 +66,52 @@ impl CPU {
     const FLAG_C: u8 = 0b0001_0000;
 
     pub fn get_flag_z(&self) -> bool {
-        (self.f & FLAG_Z) != 0
+        (self.f & Self::FLAG_Z) != 0
     }
 
     pub fn get_flag_n(&self) -> bool {
-        (self.n & FLAG_N) != 0
+        (self.f & Self::FLAG_N) != 0
     }
 
     pub fn get_flag_h(&self) -> bool {
-        (self.h & FLAG_H) != 0
+        (self.f & Self::FLAG_H) != 0
     }
 
     pub fn get_flag_c(&self) -> bool {
-        (self.c & FLAG_C) != 0
+        (self.f & Self::FLAG_C) != 0
     }
 
     pub fn set_flag_z(&mut self, value: bool) {
         if value {
             // Set the bit to 1
-            self.f |= FLAG_Z;
+            self.f |= Self::FLAG_Z;
         } else {
             // Set the bit to 0
-            self.f &= !FLAG_Z;
+            self.f &= !Self::FLAG_Z;
         }
     }
 
     pub fn set_flag_n(&mut self, value: bool) {
         if value {
-            self.n |= FLAG_N;
+            self.f |= Self::FLAG_N;
         } else {
-            self.n &= !FLAG_N;
+            self.f &= !Self::FLAG_N;
         }
     }
 
     pub fn set_flag_h(&mut self, value: bool) {
-        if value{
-            self.h |= FLAG_H;
+        if value {
+            self.f |= Self::FLAG_H;
         } else {
-            self.h &= !FLAG_H:
+            self.f &= !Self::FLAG_H;
         }
     }
 
     pub fn set_flag_c(&mut self, value: bool) {
         if value{
-            self.c |= FLAG_C;
+            self.c |= Self::FLAG_C;
         } else {
-            self.c &= !FLAG_C;
+            self.c &= !Self::FLAG_C;
         }
     }
 }
