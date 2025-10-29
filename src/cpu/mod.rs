@@ -59,4 +59,59 @@ impl CPU {
         self.h = (value >> 8) as u8;
         self.l = (value & 0xFF) as u8;
     }
+
+    const FLAG_Z: u8 = 0b1000_0000;
+    const FLAG_N: u8 = 0b0100_0000;
+    const FLAG_H: u8 = 0b0010_0000;
+    const FLAG_C: u8 = 0b0001_0000;
+
+    pub fn get_flag_z(&self) -> bool {
+        (self.f & FLAG_Z) != 0
+    }
+
+    pub fn get_flag_n(&self) -> bool {
+        (self.n & FLAG_N) != 0
+    }
+
+    pub fn get_flag_h(&self) -> bool {
+        (self.h & FLAG_H) != 0
+    }
+
+    pub fn get_flag_c(&self) -> bool {
+        (self.c & FLAG_C) != 0
+    }
+
+    pub fn set_flag_z(&mut self, value: bool) {
+        if value {
+            // Set the bit to 1
+            self.f |= FLAG_Z;
+        } else {
+            // Set the bit to 0
+            self.f &= !FLAG_Z;
+        }
+    }
+
+    pub fn set_flag_n(&mut self, value: bool) {
+        if value {
+            self.n |= FLAG_N;
+        } else {
+            self.n &= !FLAG_N;
+        }
+    }
+
+    pub fn set_flag_h(&mut self, value: bool) {
+        if value{
+            self.h |= FLAG_H;
+        } else {
+            self.h &= !FLAG_H:
+        }
+    }
+
+    pub fn set_flag_c(&mut self, value: bool) {
+        if value{
+            self.c |= FLAG_C;
+        } else {
+            self.c &= !FLAG_C;
+        }
+    }
 }
