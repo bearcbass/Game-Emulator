@@ -109,9 +109,9 @@ impl CPU {
 
     pub fn set_flag_c(&mut self, value: bool) {
         if value{
-            self.c |= Self::FLAG_C;
+            self.f |= Self::FLAG_C;
         } else {
-            self.c &= !Self::FLAG_C;
+            self.f &= !Self::FLAG_C;
         }
     }
 }
